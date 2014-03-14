@@ -1,0 +1,80 @@
+package com.turpgames.physics.body.builders;
+
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+
+public class BodyBuilder {
+
+	private final static BodyDef defaultBodyDef = new BodyDef();
+	private final static BodyBuilder instance = new BodyBuilder();
+	
+	private final BodyDef bodyDef;
+	
+	private BodyBuilder() {
+		bodyDef = new BodyDef();
+	}
+	
+	private void reset() {
+		bodyDef.active = defaultBodyDef.active;
+		bodyDef.allowSleep = defaultBodyDef.allowSleep;
+		bodyDef.awake = defaultBodyDef.awake;
+		bodyDef.bullet = defaultBodyDef.bullet;
+		bodyDef.fixedRotation = defaultBodyDef.fixedRotation;
+		bodyDef.angle = defaultBodyDef.angle;
+		bodyDef.angularDamping = defaultBodyDef.angularDamping;
+		bodyDef.angularVelocity = defaultBodyDef.angularVelocity;
+		bodyDef.gravityScale = defaultBodyDef.gravityScale;
+		bodyDef.linearDamping = defaultBodyDef.linearDamping;
+		bodyDef.linearVelocity.set(defaultBodyDef.linearVelocity);
+		bodyDef.position.set(defaultBodyDef.position);
+		bodyDef.type = defaultBodyDef.type;
+	}
+	
+	public BodyBuilder neverSleep() {
+		bodyDef.allowSleep = false;
+		return this;
+	}
+	
+	public BodyBuilder sleeping() {
+		bodyDef.awake = false;
+		return this;
+	}
+	
+	public BodyBuilder fixedRotated() {
+		bodyDef.fixedRotation = true;
+		return this;
+	}
+	
+	public BodyBuilder bullet() {
+		bodyDef.bullet = true;
+		return this;
+	}
+	
+	public BodyBuilder deactive() {
+		bodyDef.active = false;
+		return this;
+	}
+	
+	public BodyBuilder gravityScale(float gravityScale) {
+		bodyDef.gravityScale = gravityScale;
+		return this;
+	}
+	
+	public static BodyBuilder newStaticBody() {
+		return newBody(BodyType.StaticBody);
+	}
+	
+	public static BodyBuilder newDynamicBody() {
+		return newBody(BodyType.DynamicBody);
+	}
+	
+	public static BodyBuilder newKinematicBody() {
+		return newBody(BodyType.KinematicBody);
+	}
+	
+	private static BodyBuilder newBody(BodyType type) {
+		instance.reset();
+		instance.bodyDef.type = type;
+		return instance;
+	}
+}

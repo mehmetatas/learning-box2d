@@ -1,0 +1,5 @@
+package com.turpgames.physics.box2d.builders;
+
+public class MouseJointDef {
+
+}

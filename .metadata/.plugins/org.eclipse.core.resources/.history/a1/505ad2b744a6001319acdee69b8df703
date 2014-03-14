@@ -1,0 +1,13 @@
+package com.turpgames.input;
+
+public class KeyCommand {
+	int keyCode;
+	
+	KeyCommand() {
+		
+	}
+
+	public int getKeyCode() {
+		return keyCode;
+	}
+}

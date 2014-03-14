@@ -1,0 +1,36 @@
+package com.turpgames.physics.box2d.builders;
+
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Joint;
+import com.badlogic.gdx.physics.box2d.JointDef;
+import com.badlogic.gdx.physics.box2d.World;
+
+public abstract class JointBuilder<TDef extends JointDef, TJoint extends Joint> {
+	protected final TDef jointDef;
+
+	JointBuilder(TDef jointDef) {
+		this.jointDef = jointDef;
+	}
+	
+	protected void reset() {
+		jointDef.bodyA = null;
+		jointDef.bodyB = null;
+		jointDef.collideConnected = false;
+	}
+	
+	public void setBodyA(Body bodyA) {
+		jointDef.bodyA = bodyA;
+	}
+
+	public void setBodyB(Body bodyB) {
+		jointDef.bodyB = bodyB;
+	}
+
+	public void setCollideConnected(boolean collideConnected) {
+		jointDef.collideConnected = collideConnected;
+	}
+	
+	public TJoint build(World world) {
+		return (TJoint)world.createJoint(jointDef);
+	}
+}

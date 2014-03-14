@@ -1,0 +1,12 @@
+package com.turpgames.physics;
+
+import com.turpgames.input.InputListener;
+
+public class MouseJointInputListener extends InputListener {
+	private final GameWorld gameWorld;
+	
+
+	public MouseJointInputListener(GameWorld world) {
+this.gameWorld = gameWorld;
+	}
+}

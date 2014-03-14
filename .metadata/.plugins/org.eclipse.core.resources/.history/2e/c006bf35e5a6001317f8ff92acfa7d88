@@ -1,0 +1,15 @@
+package com.turpgames.input;
+
+public abstract class InputCommand {
+	InputCommand() {
+
+	}
+
+	abstract boolean execute(IInputListener listener);
+
+	final static TouchCommand touchDown = new TouchCommand.TouchDownCommand();
+	final static TouchCommand touchUp = new TouchCommand.TouchUpCommand();
+	final static TouchCommand touchDragged = new TouchCommand.TouchDraggedCommand();
+	final static KeyCommand keyUp = new KeyCommand.KeyUpCommand();
+	final static KeyCommand keyDown = new KeyCommand.KeyUpCommand();
+}

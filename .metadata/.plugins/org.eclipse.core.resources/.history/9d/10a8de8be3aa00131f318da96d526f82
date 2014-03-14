@@ -1,0 +1,59 @@
+package com.turpgames.physics.box2d.builders;
+
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.joints.RopeJoint;
+import com.badlogic.gdx.physics.box2d.joints.RopeJointDef;
+import com.turpgames.physics.GameWorld;
+
+public class RopeJointBuilder {
+	private final static RopeJointBuilder instance = new RopeJointBuilder();
+
+	private final RopeJointDef jointDef;
+
+	private RopeJointBuilder() {
+		jointDef = new RopeJointDef();
+	}
+
+	private void reset() {
+		jointDef.bodyA = null;
+		jointDef.bodyB = null;
+		jointDef.collideConnected = false;
+		jointDef.localAnchorA.set(0, 0);
+		jointDef.localAnchorB.set(0, 0);
+		jointDef.maxLength = 0;
+	}
+
+	public void setBodyA(Body bodyA) {
+		jointDef.bodyA = bodyA;
+	}
+
+	public void setBodyB(Body bodyB) {
+		jointDef.bodyB = bodyB;
+	}
+
+	public void setCollideConnected(boolean collideConnected) {
+		jointDef.collideConnected = collideConnected;
+	}
+
+	public void setLocalAnchorA(float x, float y) {
+		jointDef.localAnchorA.set(x, y);
+	}
+
+	public void setLocalAnchorB(float x, float y) {
+		jointDef.localAnchorB.set(x, y);
+	}
+
+	public void setMaxLength(float maxLength) {
+		jointDef.maxLength = maxLength;
+	}
+
+	public RopeJoint build(GameWorld world) {
+		return (RopeJoint) world.getWorld().createJoint(jointDef);
+	}
+
+	static RopeJointBuilder newRopeJoint() {
+		instance.reset();
+		return instance;
+	}
+}

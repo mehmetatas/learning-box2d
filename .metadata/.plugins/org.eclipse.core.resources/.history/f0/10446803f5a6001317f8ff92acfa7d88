@@ -1,0 +1,15 @@
+package com.turpgames.physics.body.builders;
+
+import com.badlogic.gdx.math.Vector2;
+
+public class CircleShapeBuilder {
+	private final Vector2 position = new Vector2();
+	private float radius;
+	
+	private final static CircleShapeBuilder instance;
+	
+	private void reset() {
+		position.set(0, 0);
+		radius = 0;
+	}
+}

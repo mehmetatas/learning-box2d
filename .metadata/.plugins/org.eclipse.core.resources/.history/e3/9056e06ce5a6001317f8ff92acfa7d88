@@ -1,0 +1,19 @@
+package com.turpgames.input;
+
+abstract class KeyCommand extends InputCommand {
+	int keyCode;
+	
+	final static class KeyUpCommand extends KeyCommand {
+		@Override
+		boolean execute(IInputListener listener) {
+			return listener.keyUp(keyCode);
+		}
+	}
+	
+	final static class KeyDownCommand extends KeyCommand {
+		@Override
+		boolean execute(IInputListener listener) {
+			return listener.keyDown(keyCode);
+		}
+	}
+}

@@ -1,0 +1,17 @@
+package com.turpgames.physics;
+
+public interface IInputListener {
+	boolean keyDown(int keycode);
+
+	boolean keyUp(int keycode);
+
+	boolean touchDown(int screenX, int screenY, int pointer, int button);
+
+	boolean touchUp(int screenX, int screenY, int pointer, int button);
+
+	boolean touchDragged(int screenX, int screenY, int pointer);
+
+	boolean tap(float x, float y, int count, int button);
+
+	boolean longPress(float x, float y);
+}

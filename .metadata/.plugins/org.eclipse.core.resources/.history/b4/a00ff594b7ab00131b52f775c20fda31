@@ -1,0 +1,10 @@
+package com.turpgames.physics;
+
+import com.badlogic.gdx.physics.box2d.World;
+import com.turpgames.physics.box2d.builders.Box2DBuilders;
+
+public class Ring {
+	public Ring(World world, float width, float height) {
+		Body body = Box2DBuilders.Shape.buildBox(width, height);
+	}
+}

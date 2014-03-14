@@ -1,0 +1,37 @@
+package com.turpgames.physics.body.builders;
+
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+
+public class FixtureBuilder {
+	private final FixtureDef fixtureDef = new FixtureDef();
+	
+	private final static FixtureBuilder instance = new FixtureBuilder();
+	
+	private FixtureBuilder() {
+
+	}
+
+	private void reset() {
+		fixtureDef.shape = null;
+		fixtureDef.friction = 0.2f;
+		fixtureDef.restitution = 0;
+		fixtureDef.density = 0;
+		fixtureDef.isSensor = false;
+		fixtureDef.filter.categoryBits = 0x0001;
+		fixtureDef.filter.maskBits = -1;
+		fixtureDef.filter.groupIndex = 0;
+	}
+	
+	public FixtureBuilder shape() {
+		
+	}
+	
+	public Fixture build(Body body) {
+		
+	}
+	
+	public static FixtureBuilder newFixture() {
+		instance.reset();
+		return instance;
+	}
+}

@@ -1,0 +1,41 @@
+package com.turpgames.physics.box2d.builders;
+
+import com.badlogic.gdx.physics.box2d.joints.DistanceJoint;
+import com.badlogic.gdx.physics.box2d.joints.DistanceJointDef;
+import com.badlogic.gdx.physics.box2d.joints.RopeJointDef;
+
+public class DistanceJointBuilder extends JointBuilder<DistanceJointBuilder, DistanceJointDef, DistanceJoint> {
+	private final static DistanceJointBuilder instance = new DistanceJointBuilder();
+
+	private DistanceJointBuilder() {
+		super(new DistanceJointDef());
+	}
+
+	@Override
+	protected void reset() {
+		super.reset();
+		jointDef.localAnchorA.set(0, 0);
+		jointDef.localAnchorB.set(0, 0);
+		jointDef.maxLength = 0;
+	}
+
+	public DistanceJointBuilder setLocalAnchorA(float x, float y) {
+		jointDef.localAnchorA.set(x, y);
+		return this;
+	}
+
+	public DistanceJointBuilder setLocalAnchorB(float x, float y) {
+		jointDef.localAnchorB.set(x, y);
+		return this;
+	}
+
+	public DistanceJointBuilder setMaxLength(float maxLength) {
+		jointDef.maxLength = maxLength;
+		return this;
+	}
+
+	static DistanceJointBuilder newRopeJoint() {
+		instance.reset();
+		return instance;
+	}
+}

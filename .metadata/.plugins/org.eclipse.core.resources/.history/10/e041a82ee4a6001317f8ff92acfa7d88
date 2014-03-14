@@ -1,0 +1,17 @@
+package com.turpgames.input;
+
+public interface IInputListener {
+	boolean touchDown(int x, int y, int pointer);
+
+	boolean touchUp(int x, int y, int pointer);
+
+	boolean touchDragged(int screenX, int screenY, int pointer);
+
+	boolean tap(float x, float y, int count);
+
+	boolean longPress(float x, float y);
+
+	boolean keyDown(int keycode);
+
+	boolean keyUp(int keycode);
+}

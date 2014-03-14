@@ -1,0 +1,18 @@
+package com.turpgames.input;
+
+public final class LongPressCommand extends InputCommand {
+	private loat x;
+	private float y;
+	
+	LongPressCommand() {
+		
+	}
+
+	public float getX() {
+		return x;
+	}
+
+	public float getY() {
+		return y;
+	}
+}

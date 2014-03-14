@@ -1,0 +1,71 @@
+package com.turpgames.input;
+
+public abstract class InputCommand {
+	InputCommand() {
+
+	}
+
+	private boolean exists;
+
+	public void reset() {
+		exists = false;
+	}
+	
+	void setAsExists() {
+		exists = true;
+	}
+
+	final static KeyCommand keyDownCommand = new KeyCommand();
+	final static KeyCommand keyUpCommand = new KeyCommand();
+	final static TouchCommand touchDownCommand = new TouchCommand();
+	final static TouchCommand touchUpCommand = new TouchCommand();
+	final static TouchCommand touchDraggedCommand = new TouchCommand();
+	final static TapCommand tapCommand = new TapCommand();
+	final static LongPressCommand longPressCommand = new LongPressCommand();
+
+	public static void resetAll() {
+		keyDownCommand.reset();
+		keyUpCommand.reset();
+		touchDownCommand.reset();
+		touchUpCommand.reset();
+		touchDraggedCommand.reset();
+		tapCommand.reset();
+		longPressCommand.reset();
+	}
+
+	public static KeyCommand getKeyDownCommand() {
+		return (KeyCommand)getCommand(keyDownCommand);
+	}
+
+	public static KeyCommand getKeyUpCommand() {
+		return (KeyCommand)getCommand(keyUpCommand);
+	}
+
+	public static TouchCommand getTouchDownCommand() {
+		return (TouchCommand)getCommand(touchDownCommand);
+	}
+
+	public static TouchCommand getTouchUpCommand() {
+		return (TouchCommand)getCommand(touchUpCommand);
+	}
+
+	public static TouchCommand getTouchDraggedCommand() {
+		return (TouchCommand)getCommand(touchDraggedCommand);
+	}
+
+	public static TapCommand getTapCommand() {
+		return (TapCommand)getCommand(tapCommand);
+	}
+
+	public static LongPressCommand getLongPressCommand() {
+		return (LongPressCommand)getCommand(longPressCommand);
+	}
+	
+	private static InputCommand getCommand(InputCommand cmd) {
+		return cmd.exists ? cmd : null;
+	}
+	
+	private static <T extends InputCommand> T getCommand(T cmd) {
+		return cmd.exists ? cmd : null;
+	}
+}

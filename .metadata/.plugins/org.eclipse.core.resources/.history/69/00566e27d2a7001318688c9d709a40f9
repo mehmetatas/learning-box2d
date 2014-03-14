@@ -1,0 +1,7 @@
+package com.turpgames.physics.box2d.builders;
+
+public final class Box2D {
+	private Box2D() {
+
+	}
+}

@@ -1,0 +1,23 @@
+package com.turpgames.physics.box2d.builders;
+
+public final class Box2D {
+	private Box2D() {
+
+	}
+	
+	public static class BodyBuilders {
+		public static BodyBuilder newStaticBody() {
+			return BodyBuilder.newStaticBody();
+		}
+		
+		public static BodyBuilder newDynamicBody() {
+			return BodyBuilder.newDynamicBody();
+		}
+		
+		public static BodyBuilder newKinematicBody() {
+			return BodyBuilder.newKinematicBody();
+		}
+	}
+	
+	public static 
+}

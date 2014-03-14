@@ -1,0 +1,37 @@
+package com.turpgames.physics;
+
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.turpgames.input.GdxInputManager;
+import com.turpgames.input.InputListener;
+import com.turpgames.physics.box2d.builders.Box2DBuilders;
+
+public class Ball {
+	public final Body body;
+
+	public Ball(GameWorld gameWorld) {
+		body = Box2DBuilders.Body.newDynamicBodyBuilder()
+				.setCenter(0.75f, 0.5f)
+				.build(gameWorld.getWorld(),
+						Box2DBuilders.Fixture.newFixtureBuilder()
+								.setElasticity(0.8f)
+								.setDensity(2f)
+								.setFriction(0.4f)
+								.setShape(Box2DBuilders.Shape.newCircleBuilder().setRadius(0.1f).build()));
+
+		GdxInputManager.instance.registerListener(new InputListener() {
+			@Override
+			public boolean touchDown(float x, float y, int pointer) {
+				x = GameWorld.scale * x;
+				y = GameWorld.scale * y;
+				for (Fixture fixture : body.getFixtureList()) {
+					if (fixture.testPoint(x, y)) {
+						body.applyLinearImpulse(1, 5, 0, 0, true);
+						return true;
+					}
+				}
+				return false;
+			}
+		});
+	}
+}

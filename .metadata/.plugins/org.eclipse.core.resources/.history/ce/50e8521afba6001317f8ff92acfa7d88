@@ -1,0 +1,52 @@
+package com.turpgames.physics.body.builders;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+
+public class PolygonShapeBuilder {
+private final static PolygonShapeBuilder instance = new PolygonShapeBuilder();
+	
+	private final List<Vector2> vertices = new ArrayList<Vector2>();
+	private float radius;
+	
+	private PolygonShapeBuilder() {
+		
+	}
+	
+	private void reset() {
+		vertices.clear();
+		radius = 0;
+	}
+	
+	public PolygonShapeBuilder radius(float r) {
+		radius = r;
+		return this;
+	}
+	
+	public PolygonShapeBuilder addVertice(float x, float y) {
+		vertices.add(new Vector2(x, y));
+		return this;
+	}
+	
+	public PolygonShape build() {
+		PolygonShape polygon = new PolygonShape();
+		polygon.setRadius(radius);
+		polygon.set(getVerticeArray());
+		return polygon;
+	}
+	
+	private final static Vector2[] arrPrototype = new Vector2[0];s
+	
+	private Vector2[0] getVerticeArray() {
+		return vertices.toArray(arrPrototype);
+	}
+	
+	public static PolygonShapeBuilder newCircle() {
+		instance.reset();
+		return instance;
+	}
+}

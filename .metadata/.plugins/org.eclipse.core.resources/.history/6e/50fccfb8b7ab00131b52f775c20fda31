@@ -1,0 +1,14 @@
+package com.turpgames.physics;
+
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.World;
+import com.turpgames.physics.box2d.builders.Box2DBuilders;
+
+public class Ring {
+	public Ring(World world, float x, float y, float width, float height) {
+		Box2DBuilders.Body.newDynamicBodyBuilder()
+				.setCenter(x, y)
+				.build(world, Box2DBuilders.Fixture.newFixtureBuilder()
+						.setShape(Box2DBuilders.Shape.buildBox(width, height)));
+	}
+}

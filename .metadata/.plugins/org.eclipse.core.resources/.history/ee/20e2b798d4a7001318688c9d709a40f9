@@ -1,0 +1,45 @@
+package com.turpgames.physics.box2d.builders;
+
+public final class Box2DBuilders {
+	private Box2DBuilders() {
+
+	}
+	
+	public static class Body {
+		public static BodyBuilder newStaticBody() {
+			return BodyBuilder.newStaticBody();
+		}
+		
+		public static BodyBuilder newDynamicBody() {
+			return BodyBuilder.newDynamicBody();
+		}
+		
+		public static BodyBuilder newKinematicBody() {
+			return BodyBuilder.newKinematicBody();
+		}
+	}
+	
+	public static class Shape {
+		public static PolygonShapeBuilder newPolygon() {
+			return PolygonShapeBuilder.newPolygon();
+		}
+		
+		public static CircleShapeBuilder newCircle() {
+			return CircleShapeBuilder.newCircle();
+		}
+		
+		public static ChainShapeBuilder newChain() {
+			return ChainShapeBuilder.newChain();
+		}
+		
+		public static LoopedChainShapeBuilder newLoopedChain() {
+			return LoopedChainShapeBuilder.newLoopedChain();
+		}
+	}
+	
+	public static class Fixture {
+		public static FixtureBuilder newFixture() {
+			return FixtureBuilder.newFixture();
+		}
+	}
+}

@@ -1,0 +1,28 @@
+package com.turpgames.input;
+
+abstract class TouchCommand extends InputCommand {
+	float x;
+	float y;
+	int pointer;
+
+	final static class TouchDownCommand extends TouchCommand {
+		@Override
+		boolean execute(IInputListener listener) {
+			return listener.touchDown(x, y, pointer);
+		}
+	}
+
+	final static class TouchUpCommand extends TouchCommand {
+		@Override
+		boolean execute(IInputListener listener) {
+			return listener.touchUp(x, y, pointer);
+		}
+	}
+
+	final static class TouchDraggedCommand extends TouchCommand {
+		@Override
+		boolean execute(IInputListener listener) {
+			return listener.touchDragged(x, y, pointer);
+		}
+	}
+}

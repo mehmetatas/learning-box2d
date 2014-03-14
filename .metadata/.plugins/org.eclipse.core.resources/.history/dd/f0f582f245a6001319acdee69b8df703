@@ -1,0 +1,18 @@
+package com.turpgames.input;
+
+public final class KeyCommand extends InputCommand {
+	private int keyCode;
+	
+	KeyCommand() {
+		
+	}
+	
+	void set(int keyCode) {
+		this.keyCode = keyCode;
+		setAsUse();
+	}
+
+	public int getKeyCode() {
+		return keyCode;
+	}
+}

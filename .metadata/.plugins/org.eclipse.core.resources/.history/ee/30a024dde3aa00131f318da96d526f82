@@ -1,0 +1,17 @@
+package com.turpgames.physics.box2d.builders;
+
+import com.badlogic.gdx.physics.box2d.JointDef;
+
+public abstract class JointBuilder<T extends JointDef> {
+	protected final T jointDef;
+
+	JointBuilder(T jointDef) {
+		this.jointDef = jointDef;
+	}
+	
+	protected void reset() {
+		jointDef.bodyA = null;
+		jointDef.bodyB = null;
+		jointDef.collideConnected = false;
+	}
+}

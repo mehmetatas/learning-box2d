@@ -1,0 +1,82 @@
+package com.turpgames.physics;
+
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.turpgames.physics.body.builders.BodyBuilder;
+import com.turpgames.physics.body.builders.FixtureBuilder;
+import com.turpgames.physics.body.builders.PolygonShapeBuilder;
+
+public final class Room {
+	private Room(Builder builder) {
+
+	}
+	
+	public static void create(GameWorld gameWorld, float wallThickness) {
+		createFloorAndCeiling(gameWorld, wallThickness );
+		createSideWalls(gameWorld, wallThickness);
+	}
+
+	private static void createFloorAndCeiling(GameWorld gameWorld, float wallThickness) {
+		Body floorBody = BodyBuilder.newStaticBody()
+				.center(gameWorld.getWidth() / 2, wallThickness / 2)
+				.build(gameWorld.getWorld());
+
+		Body ceilingBody = BodyBuilder.newStaticBody()
+				.center(gameWorld.getWidth() / 2, gameWorld.getHeight() - wallThickness / 2)
+				.build(gameWorld.getWorld());
+
+		PolygonShape box = PolygonShapeBuilder.buildBox(gameWorld.getWidth(), wallThickness);
+
+		FixtureBuilder.newFixture()
+				.shape(box)
+				.density(0f)
+				.build(floorBody);
+
+		FixtureBuilder.newFixture()
+				.shape(box)
+				.density(0f)
+				.build(ceilingBody);
+
+		box.dispose();
+	}
+
+	private static void createSideWalls(GameWorld gameWorld, float wallThickness) {
+		Body leftWallBody = BodyBuilder.newStaticBody()
+				.center(wallThickness / 2, gameWorld.getHeight() / 2)
+				.build(gameWorld.getWorld());
+		
+		Body rightWallBody = BodyBuilder.newStaticBody()
+				.center(gameWorld.getWidth() - wallThickness / 2, gameWorld.getHeight() / 2)
+				.build(gameWorld.getWorld());
+
+		PolygonShape box = PolygonShapeBuilder.buildBox(wallThickness, gameWorld.getHeight());
+
+		FixtureBuilder.newFixture()
+				.shape(box)
+				.density(0f)
+				.build(leftWallBody);
+
+		FixtureBuilder.newFixture()
+				.shape(box)
+				.density(0f)
+				.build(rightWallBody);
+
+		box.dispose();
+	}
+	
+	public class Builder {
+		private float wallThickness;
+		private final Vector2 position = new Vector2();
+		private final Vector2 size = new Vector2();
+		
+		private Builder() {
+			
+		}
+		
+		public Builder wallThickness(float wallThickness) {
+			this.wallThickness = wallThickness;
+			return this;
+		}
+	}
+}

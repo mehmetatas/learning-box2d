@@ -1,0 +1,16 @@
+package com.turpgames.physics;
+
+import com.badlogic.gdx.physics.box2d.Body;
+import com.turpgames.physics.box2d.builders.Box2DBuilders;
+
+public class Ball {
+	public final Body body;
+	
+	public Ball(GameWorld gameWorld) {
+		body = Box2DBuilders.Body.newDynamicBodyBuilder()
+		.setCenter(0.75f, 1.0f)
+		.build(gameWorld.getWorld(),
+			Box2DBuilders.Fixture.newFixtureBuilder()
+						.setShape(Box2DBuilders.Shape.newCircleBuilder().setRadius(0.2f).build()));
+	}
+}

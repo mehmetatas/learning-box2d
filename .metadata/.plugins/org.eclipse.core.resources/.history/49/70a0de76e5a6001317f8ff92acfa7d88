@@ -1,0 +1,36 @@
+package com.turpgames.input;
+
+public abstract class InputCommand {
+	InputCommand() {
+
+	}
+
+	abstract boolean execute(IInputListener listener);
+
+	final static TouchCommand touchDown = new TouchCommand.TouchDownCommand();
+	final static TouchCommand touchUp = new TouchCommand.TouchUpCommand();
+	final static TouchCommand touchDragged = new TouchCommand.TouchDraggedCommand();
+	final static KeyCommand keyUp = new KeyCommand.KeyUpCommand();
+	final static KeyCommand keyDown = new KeyCommand.KeyDownCommand();
+	final static TapCommand tap = new TapCommand();
+	final static LongPressCommand longPressCommand = new LongPressCommand();
+	
+	
+	abstract class KeyCommand extends InputCommand {
+		int keyCode;
+		
+		final static class KeyUpCommand extends KeyCommand {
+			@Override
+			boolean execute(IInputListener listener) {
+				return listener.keyUp(keyCode);
+			}
+		}
+		
+		final static class KeyDownCommand extends KeyCommand {
+			@Override
+			boolean execute(IInputListener listener) {
+				return listener.keyDown(keyCode);
+			}
+		}
+	}
+}

@@ -1,0 +1,7 @@
+package com.turpgames.physics;
+
+public class FixedPart {
+	public FixedPart() {
+		
+	}
+}

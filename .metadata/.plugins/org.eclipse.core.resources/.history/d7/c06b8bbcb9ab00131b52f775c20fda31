@@ -1,0 +1,14 @@
+package com.turpgames.physics.box2d.builders;
+
+import com.badlogic.gdx.physics.box2d.JointDef;
+import com.badlogic.gdx.physics.box2d.joints.MouseJoint;
+import com.badlogic.gdx.physics.box2d.joints.MouseJointDef;
+
+public class MouseJointBuilder extends JointBuilder<MouseJointBuilder, MouseJointDef, MouseJoint> {
+
+	protected MouseJointBuilder(MouseJointDef jointDef) {
+		super(jointDef);
+		// TODO Auto-generated constructor stub
+	}
+
+}

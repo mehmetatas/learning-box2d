@@ -1,0 +1,27 @@
+package com.turpgames.physics.body.builders;
+
+import com.badlogic.gdx.physics.box2d.BodyDef;
+
+class BodyDefResetter {
+	private BodyDefResetter() {
+		
+	}
+	
+	private final static BodyDef defaultInstance = new BodyDef();
+	
+	static void reset(BodyDef bodyDef) {
+		bodyDef.active = defaultInstance.active;
+		bodyDef.allowSleep = defaultInstance.allowSleep;
+		bodyDef.awake = defaultInstance.awake;
+		bodyDef.bullet = defaultInstance.bullet;
+		bodyDef.fixedRotation = defaultInstance.fixedRotation;
+		bodyDef.angle = defaultInstance.angle;
+		bodyDef.angularDamping = defaultInstance.angularDamping;
+		bodyDef.angularVelocity = defaultInstance.angularVelocity;
+		bodyDef.gravityScale = defaultInstance.gravityScale;
+		bodyDef.linearDamping = defaultInstance.linearDamping;
+		bodyDef.linearVelocity = defaultInstance.linearVelocity;
+		bodyDef.position = defaultInstance.position;
+		bodyDef.type = defaultInstance.type;
+	}
+}

@@ -1,0 +1,18 @@
+package com.turpgames.input;
+
+public final class TapCommand extends InputCommand {
+	public 
+	
+	private TapCommand() {
+		
+	}
+	
+	float x;
+	float y;
+	int count;
+
+	@Override
+	boolean execute(IInputListener listener) {
+		return listener.tap(x, y, count);
+	}
+}

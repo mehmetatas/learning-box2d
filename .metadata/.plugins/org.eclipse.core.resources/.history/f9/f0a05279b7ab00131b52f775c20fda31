@@ -1,0 +1,9 @@
+package com.turpgames.physics;
+
+import com.badlogic.gdx.physics.box2d.World;
+
+public class Ring {
+	public Ring(World world, float width, float height) {
+
+	}
+}
