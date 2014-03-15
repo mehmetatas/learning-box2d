@@ -1,7 +1,0 @@
-package com.turpgames.physics.body.builders;
-
-import com.badlogic.gdx.physics.box2d.Shape;
-
-public interface IShapeBuilder<T extends Shape> {
-	T build();
-}

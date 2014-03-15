@@ -1,5 +1,0 @@
-package com.turpgames.input;
-
-abstract class KeyCommand extends InputCommand {
-	int keyCode;
-}

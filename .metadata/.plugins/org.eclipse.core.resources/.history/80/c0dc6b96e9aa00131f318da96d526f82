@@ -1,8 +1,0 @@
-package com.turpgames.physics.box2d.builders;
-
-import com.badlogic.gdx.physics.box2d.joints.DistanceJoint;
-import com.badlogic.gdx.physics.box2d.joints.DistanceJointDef;
-
-public class DistanceJointBuilder extends JointBuilder<DistanceJointBuilder, DistanceJointDef, DistanceJoint> {
-
-}

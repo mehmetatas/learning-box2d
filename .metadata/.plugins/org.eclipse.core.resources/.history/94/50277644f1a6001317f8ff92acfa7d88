@@ -1,7 +1,0 @@
-package com.turpgames.physics.body.builders;
-
-import com.badlogic.gdx.physics.box2d.BodyDef;
-
-class BodyDefPrototype {
-	private final static BodyDef prototype = new BodyDef();
-}

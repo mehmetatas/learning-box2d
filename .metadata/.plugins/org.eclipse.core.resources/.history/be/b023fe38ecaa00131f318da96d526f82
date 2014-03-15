@@ -1,7 +1,0 @@
-package com.turpgames.physics;
-
-public class RopeJoint2 {
-public static void build(float x, float y, float length, float parts) {
-	
-}
-}
