@@ -1,8 +1,6 @@
 package com.turpgames.physics;
 
 import com.badlogic.gdx.math.Vector2;
-import com.turpgames.input.GdxInputManager;
-import com.turpgames.input.InputListener;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
@@ -39,7 +37,7 @@ public class Person {
 				.setFriction(0.1f)
 				.setElasticity(0.8f)
 				.build(person)
-				.setUserData("head");
+				.setUserData(new UserData("head"));
 
 		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(neck)
@@ -47,7 +45,7 @@ public class Person {
 				.setFriction(0.1f)
 				.setElasticity(0.8f)
 				.build(person)
-				.setUserData("neck");
+				.setUserData(new UserData("neck"));
 
 		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(body)
@@ -55,7 +53,7 @@ public class Person {
 				.setFriction(0.1f)
 				.setElasticity(0.8f)
 				.build(person)
-				.setUserData("body");
+				.setUserData(new UserData("body"));
 
 		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(leftLeg)
@@ -63,7 +61,7 @@ public class Person {
 				.setFriction(0.1f)
 				.setElasticity(0.8f)
 				.build(person)
-				.setUserData("leftLeg");
+				.setUserData(new UserData("leftLeg"));
 
 		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(leftLeg)
@@ -71,7 +69,7 @@ public class Person {
 				.setFriction(0.1f)
 				.setElasticity(0.8f)
 				.build(person)
-				.setUserData("leftLeg");
+				.setUserData(new UserData("leftLeg"));
 
 		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(rightLeg)
@@ -79,7 +77,7 @@ public class Person {
 				.setFriction(0.1f)
 				.setElasticity(0.8f)
 				.build(person)
-				.setUserData("rightLeg");
+				.setUserData(new UserData("rightLeg"));
 
 		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(rightFoot)
@@ -87,7 +85,7 @@ public class Person {
 				.setFriction(0.1f)
 				.setElasticity(0.8f)
 				.build(person)
-				.setUserData("rightFoot");
+				.setUserData(new UserData("rightFoot"));
 
 		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(leftFoot)
@@ -95,7 +93,7 @@ public class Person {
 				.setFriction(0.1f)
 				.setElasticity(0.8f)
 				.build(person)
-				.setUserData("leftFoot");
+				.setUserData(new UserData("leftFoot"));
 
 		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(leftArm)
@@ -103,7 +101,7 @@ public class Person {
 				.setFriction(0.1f)
 				.setElasticity(0.8f)
 				.build(person)
-				.setUserData("leftArm");
+				.setUserData(new UserData("leftArm"));
 
 		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(rightArm)
@@ -111,7 +109,7 @@ public class Person {
 				.setFriction(0.1f)
 				.setElasticity(0.8f)
 				.build(person)
-				.setUserData("rightArm");
+				.setUserData(new UserData("rightArm"));
 
 		head.dispose();
 		neck.dispose();
@@ -122,38 +120,11 @@ public class Person {
 		rightFoot.dispose();
 		leftArm.dispose();
 		rightArm.dispose();
-
-		GdxInputManager.instance.registerListener(inputListener);
-	}
-
-	private void onTouchDownInside(float x, float y, Fixture fixture) {
-		Vector2 fixtureCenter = getCenter(fixture);
-		float cx = person.getPosition().x + fixtureCenter.x; // MathUtils.cos(man.getAngle()) * (fixtureCenter.x - man.getPosition().x);
-		float cy = person.getPosition().y + fixtureCenter.y; // MathUtils.sin(man.getAngle()) * (fixtureCenter.y - man.getPosition().y);
-		
-		float dx = x - cx;
-		float dy = y - cy;
-//		System.out.println(String.format("%s: %f %f", fixture.getUserData(), dx, dy));
-//		System.out.println(String.format("center: %f %f", fixtureCenter.x, fixtureCenter.y));
-//		System.out.println(String.format("person: %f %f", person.getPosition().x, person.getPosition().y));
-		person.applyLinearImpulse(dx * 5, dy * 5, cx, cy, true);
-	}
-
-	private boolean onTouchDown(float x, float y) {
-		x = GameWorld.scale * x;
-		y = GameWorld.scale * y;
-		for (Fixture fixture : person.getFixtureList()) {
-			if (fixture.testPoint(x, y)) {
-				onTouchDownInside(x, y, fixture);
-				return true;
-			}
-		}
-		return false;
 	}
 
 	private final static Vector2 tmp = new Vector2();
 
-	private Vector2 getCenter(Fixture fixture) {
+	protected Vector2 getCenter(Fixture fixture) {
 		Shape shape = fixture.getShape();
 
 		if (shape.getType() == Type.Circle) {
@@ -180,11 +151,4 @@ public class Person {
 
 		throw new UnsupportedOperationException("Unsupported shape type " + shape.getType());
 	}
-
-	private final InputListener inputListener = new InputListener() {
-		@Override
-		public boolean touchDown(float x, float y, int pointer) {
-			return onTouchDown(x, y);
-		}
-	};
 }

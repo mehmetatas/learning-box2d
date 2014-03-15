@@ -1,6 +1,6 @@
 package com.turpgames.input;
 
-public class InputListener implements IInputListener {
+public abstract class InputListener implements IInputListener {
 	@Override
 	public boolean touchDown(float x, float y, int pointer) {
 		return false;

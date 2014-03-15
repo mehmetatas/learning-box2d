@@ -42,7 +42,6 @@ public class Rope {
 
 		headSegmentBody = segments[0].body;
 		tailSegmentBody = segments[segmentCount - 1].body;
-
 	}
 
 	private RopeSegment[] initSegments() {
@@ -54,8 +53,7 @@ public class Rope {
 
 		RopeSegment[] segments = new RopeSegment[segmentCount];
 		for (int i = 0; i < segments.length; i++) {
-			float y = (i + 0.5f) * segmentHeight;
-			segments[i] = new RopeSegment(gameWorld, 0, y, segmentShape);
+			segments[i] = new RopeSegment(gameWorld, segmentShape);
 			segments[i].body.setSleepingAllowed(true);
 			segments[i].body.setAwake(false);
 			if (i > 0) {
@@ -67,7 +65,7 @@ public class Rope {
 		}
 
 		segmentShape.dispose();
-		
+
 		return segments;
 	}
 
@@ -102,7 +100,7 @@ public class Rope {
 		buildTailJoint();
 		buildMainRopeJoint();
 	}
-	
+
 	public void untieTail() {
 		if (this.tailBody == null)
 			return;
@@ -131,7 +129,7 @@ public class Rope {
 			ropeJoints[i] = null;
 		}
 	}
-	
+
 	private void buildHeadJoint() {
 		headJoint = Box2DBuilders.Joint.revoluteJointBuilder()
 				.setBodyA(headBody)
@@ -166,9 +164,10 @@ public class Rope {
 				.setBodyA(headBody)
 				.setBodyB(tailBody)
 				.setMaxLength(ropeLength)
+				.setCollideConnected(true)
 				.build(gameWorld.getWorld());
 	}
-	
+
 	private void destroyMainRopeJoint() {
 		if (mainRopeJoint == null)
 			return;
@@ -176,14 +175,14 @@ public class Rope {
 		gameWorld.getWorld().destroyJoint(mainRopeJoint);
 		mainRopeJoint = null;
 	}
-	
+
 	private final static Builder builder = new Builder();
-	
+
 	public static Builder builder() {
 		builder.reset();
 		return builder;
 	}
-	
+
 	public static class Builder {
 		private float ropeLength;
 		private int segmentCount;
@@ -192,7 +191,7 @@ public class Rope {
 		private Builder() {
 
 		}
-		
+
 		private void reset() {
 			ropeLength = 1f;
 			segmentCount = 4;

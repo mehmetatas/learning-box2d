@@ -27,6 +27,9 @@ public final class GameWorld {
 		this.spriteBatch = new SpriteBatch();
 		this.debugRenderer = new Box2DDebugRenderer();
 		
+		debugRenderer.setDrawJoints(false);
+		debugRenderer.setDrawContacts(false);
+		
 		camera.position.set(camera.viewportWidth * .5f, camera.viewportHeight * .5f, 0f);
 		camera.update();
 	}

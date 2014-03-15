@@ -25,18 +25,24 @@ public class PhysicsGame implements ApplicationListener {
 		GdxInputManager.instance.activate();
 	}
 
+	public static Rope rope;
+
 	private void initSarkac() {
 		final float ropeLength = 1.0f;
 		final float fixedPartCenterY = 2.5f;
 
 		FixedPart fixedPart = new FixedPart(gameWorld);
 		Ball ball = new Ball(gameWorld, 0.75f, fixedPartCenterY - ropeLength, 0.05f);
+		new Person(gameWorld);
+		rope = Rope.builder()
+				.setRopeLength(0.8f)
+				.setSegmentCount(3)
+				.setSegmentWidth(0.02f)
+				.build(gameWorld);
 
-		Rope rope = Rope.builder().build(gameWorld);
-		
 		rope.tieHead(fixedPart.body);
 		rope.tieTail(ball.body);
-		
+
 		gameWorld.getWorld().setContactFilter(new CollideContactFilter());
 
 		GdxInputManager.instance.registerListener(new MouseJointInputListener(gameWorld, fixedPart.body));

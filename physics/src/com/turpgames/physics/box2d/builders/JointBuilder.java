@@ -6,35 +6,35 @@ import com.badlogic.gdx.physics.box2d.JointDef;
 import com.badlogic.gdx.physics.box2d.World;
 
 @SuppressWarnings("unchecked")
-public abstract class JointBuilder<TBuilder extends JointBuilder<TBuilder, TDef, TJoint>, TDef extends JointDef, TJoint extends Joint> {
-	protected final TDef jointDef;
+public abstract class JointBuilder<TJointBuilder extends JointBuilder<TJointBuilder, TJointDef, TJoint>, TJointDef extends JointDef, TJoint extends Joint> {
+	protected final TJointDef jointDef;
 
-	protected JointBuilder(TDef jointDef) {
+	protected JointBuilder(TJointDef jointDef) {
 		this.jointDef = jointDef;
 	}
-	
+
 	protected void reset() {
 		jointDef.bodyA = null;
 		jointDef.bodyB = null;
 		jointDef.collideConnected = false;
 	}
-	
-	public TBuilder setBodyA(Body bodyA) {
+
+	public TJointBuilder setBodyA(Body bodyA) {
 		jointDef.bodyA = bodyA;
-		return (TBuilder)this;
+		return (TJointBuilder) this;
 	}
 
-	public TBuilder setBodyB(Body bodyB) {
+	public TJointBuilder setBodyB(Body bodyB) {
 		jointDef.bodyB = bodyB;
-		return (TBuilder)this;
+		return (TJointBuilder) this;
 	}
 
-	public TBuilder setCollideConnected(boolean collideConnected) {
+	public TJointBuilder setCollideConnected(boolean collideConnected) {
 		jointDef.collideConnected = collideConnected;
-		return (TBuilder)this;
+		return (TJointBuilder) this;
 	}
-	
+
 	public TJoint build(World world) {
-		return (TJoint)world.createJoint(jointDef);
+		return (TJoint) world.createJoint(jointDef);
 	}
 }
