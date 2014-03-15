@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.turpgames.physics.box2d.builders.Box2DBuilders;
+import com.turpgames.physics.box2d.builders.FixtureBuilder;
 
 public final class Room {
 	private Room(GameWorld gameWorld, Builder builder) {
@@ -12,46 +13,43 @@ public final class Room {
 	}
 
 	private void createFloorAndCeiling(GameWorld gameWorld, Builder builder) {
-		Body floorBody = Box2DBuilders.Body.newStaticBodyBuilder()
+		Body floorBody = Box2DBuilders.Body.staticBodyBuilder()
 				.setCenter(builder.width / 2, builder.wallThickness / 2)
 				.build(gameWorld.getWorld());
 
-		Body ceilingBody = Box2DBuilders.Body.newStaticBodyBuilder()
+		Body ceilingBody = Box2DBuilders.Body.staticBodyBuilder()
 				.setCenter(builder.width / 2, builder.height - builder.wallThickness / 2)
 				.build(gameWorld.getWorld());
 
-		PolygonShape box = Box2DBuilders.Shape.buildBox(builder.width, builder.wallThickness, builder.position.x, builder.position.y ,0);
+		PolygonShape box = Box2DBuilders.Shape.buildBox(builder.width, builder.wallThickness, builder.position.x, builder.position.y, 0);
 
-		Box2DBuilders.Fixture.newFixtureBuilder()
+		FixtureBuilder fixtureBuilder = Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(box)
-				.setDensity(0f)
-				.build(floorBody);
+				.setDensity(0f);
 
-		Box2DBuilders.Fixture.newFixtureBuilder()
-				.setShape(box)
-				.setDensity(0f)
-				.build(ceilingBody);
+		fixtureBuilder.build(floorBody);
+		fixtureBuilder.build(ceilingBody);
 
 		box.dispose();
 	}
 
 	private void createSideWalls(GameWorld gameWorld, Builder builder) {
-		Body leftWallBody = Box2DBuilders.Body.newStaticBodyBuilder()
+		Body leftWallBody = Box2DBuilders.Body.staticBodyBuilder()
 				.setCenter(builder.wallThickness / 2, builder.height / 2)
 				.build(gameWorld.getWorld());
 
-		Body rightWallBody = Box2DBuilders.Body.newStaticBodyBuilder()
+		Body rightWallBody = Box2DBuilders.Body.staticBodyBuilder()
 				.setCenter(builder.width - builder.wallThickness / 2, builder.height / 2)
 				.build(gameWorld.getWorld());
 
-		PolygonShape box = Box2DBuilders.Shape.buildBox(builder.wallThickness, builder.height, builder.position.x, builder.position.y,0);
+		PolygonShape box = Box2DBuilders.Shape.buildBox(builder.wallThickness, builder.height, builder.position.x, builder.position.y, 0);
 
-		Box2DBuilders.Fixture.newFixtureBuilder()
+		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(box)
 				.setDensity(0f)
 				.build(leftWallBody);
 
-		Box2DBuilders.Fixture.newFixtureBuilder()
+		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(box)
 				.setDensity(0f)
 				.build(rightWallBody);

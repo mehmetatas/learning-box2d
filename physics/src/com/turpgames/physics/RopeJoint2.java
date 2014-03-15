@@ -13,22 +13,22 @@ public class RopeJoint2 {
 		pieceBodies[pieces] = bodyB;
 
 		for (int i = 1; i < pieces; i++) {
-			pieceBodies[i] = Box2DBuilders.Body.newDynamicBodyBuilder()
+			pieceBodies[i] = Box2DBuilders.Body.dynamicBodyBuilder()
 					.setCenter(x, y + i * pieceLength)
-					.build(world, Box2DBuilders.Fixture.newFixtureBuilder()
+					.build(world, Box2DBuilders.Fixture.fixtureBuilder()
 							.setDensity(0.1f)
 							.setElasticity(1f)
 							.setFriction(0.1f)
-							.setShape(Box2DBuilders.Shape.newCircleBuilder().setRadius(0.001f).build()));
+							.setShape(Box2DBuilders.Shape.circleBuilder().setRadius(0.001f).build()));
 
-			Box2DBuilders.Joint.newDistanceJointBuilder()
+			Box2DBuilders.Joint.distanceJointBuilder()
 					.setBodyA(pieceBodies[i - 1])
 					.setBodyB(pieceBodies[i])
 					.setLength(pieceLength)
 					.build(world);
 		}
 
-		Box2DBuilders.Joint.newDistanceJointBuilder()
+		Box2DBuilders.Joint.distanceJointBuilder()
 				.setBodyA(pieceBodies[pieces - 1])
 				.setBodyB(bodyB)
 				.setLength(pieceLength)

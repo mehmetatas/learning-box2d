@@ -7,14 +7,14 @@ public class Ball {
 	public final Body body;
 
 	public Ball(GameWorld gameWorld, float x, float y, float r) {
-		body = Box2DBuilders.Body.newDynamicBodyBuilder()
+		body = Box2DBuilders.Body.dynamicBodyBuilder()
 				.setCenter(x, y)
 				.build(gameWorld.getWorld(),
-						Box2DBuilders.Fixture.newFixtureBuilder()
+						Box2DBuilders.Fixture.fixtureBuilder()
 								.setElasticity(0.8f)
 								.setDensity(0.2f)
 								.setFriction(0.4f)
-								.setShape(Box2DBuilders.Shape.newCircleBuilder().setRadius(r).build()));
+								.setShape(Box2DBuilders.Shape.circleBuilder().setRadius(r).build()));
 		body.getPosition().set(x, y);
 	}
 }

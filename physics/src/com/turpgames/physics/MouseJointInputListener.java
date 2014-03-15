@@ -34,7 +34,7 @@ public class MouseJointInputListener extends InputListener {
 
 	public MouseJointInputListener(GameWorld gameWorld, Body dummyBodyA) {
 		this.gameWorld = gameWorld;
-		this.mouseJointBuilder = Box2DBuilders.Joint.newMouseJointBuilder()
+		this.mouseJointBuilder = Box2DBuilders.Joint.mouseJointBuilder()
 				.setCollideConnected(true)
 				.setBodyA(dummyBodyA);
 	}

@@ -15,11 +15,11 @@ public class Person {
 	private final Body person;
 
 	public Person(GameWorld gameWorld) {
-		person = Box2DBuilders.Body.newDynamicBodyBuilder()
+		person = Box2DBuilders.Body.dynamicBodyBuilder()
 				.setCenter(gameWorld.getWidth() / 2, 0.1f)
 				.build(gameWorld.getWorld());
 		
-		CircleShape head = Box2DBuilders.Shape.newCircleBuilder()
+		CircleShape head = Box2DBuilders.Shape.circleBuilder()
 				.setPosition(0f, 1.65f)
 				.setRadius(0.1f)
 				.build();
@@ -33,7 +33,7 @@ public class Person {
 		PolygonShape leftArm = Box2DBuilders.Shape.buildBox(0.1f, 0.6f, -0.25f, 1.20f, 0f);
 		PolygonShape rightArm = Box2DBuilders.Shape.buildBox(0.1f, 0.6f, 0.25f, 1.20f, 0f);
 
-		Box2DBuilders.Fixture.newFixtureBuilder()
+		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(head)
 				.setDensity(0.9f)
 				.setFriction(0.1f)
@@ -41,7 +41,7 @@ public class Person {
 				.build(person)
 				.setUserData("head");
 
-		Box2DBuilders.Fixture.newFixtureBuilder()
+		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(neck)
 				.setDensity(0.9f)
 				.setFriction(0.1f)
@@ -49,7 +49,7 @@ public class Person {
 				.build(person)
 				.setUserData("neck");
 
-		Box2DBuilders.Fixture.newFixtureBuilder()
+		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(body)
 				.setDensity(0.9f)
 				.setFriction(0.1f)
@@ -57,7 +57,7 @@ public class Person {
 				.build(person)
 				.setUserData("body");
 
-		Box2DBuilders.Fixture.newFixtureBuilder()
+		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(leftLeg)
 				.setDensity(0.9f)
 				.setFriction(0.1f)
@@ -65,7 +65,7 @@ public class Person {
 				.build(person)
 				.setUserData("leftLeg");
 
-		Box2DBuilders.Fixture.newFixtureBuilder()
+		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(leftLeg)
 				.setDensity(0.9f)
 				.setFriction(0.1f)
@@ -73,7 +73,7 @@ public class Person {
 				.build(person)
 				.setUserData("leftLeg");
 
-		Box2DBuilders.Fixture.newFixtureBuilder()
+		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(rightLeg)
 				.setDensity(0.9f)
 				.setFriction(0.1f)
@@ -81,7 +81,7 @@ public class Person {
 				.build(person)
 				.setUserData("rightLeg");
 
-		Box2DBuilders.Fixture.newFixtureBuilder()
+		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(rightFoot)
 				.setDensity(0.9f)
 				.setFriction(0.1f)
@@ -89,7 +89,7 @@ public class Person {
 				.build(person)
 				.setUserData("rightFoot");
 
-		Box2DBuilders.Fixture.newFixtureBuilder()
+		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(leftFoot)
 				.setDensity(0.9f)
 				.setFriction(0.1f)
@@ -97,7 +97,7 @@ public class Person {
 				.build(person)
 				.setUserData("leftFoot");
 
-		Box2DBuilders.Fixture.newFixtureBuilder()
+		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(leftArm)
 				.setDensity(0.9f)
 				.setFriction(0.1f)
@@ -105,7 +105,7 @@ public class Person {
 				.build(person)
 				.setUserData("leftArm");
 
-		Box2DBuilders.Fixture.newFixtureBuilder()
+		Box2DBuilders.Fixture.fixtureBuilder()
 				.setShape(rightArm)
 				.setDensity(0.9f)
 				.setFriction(0.1f)

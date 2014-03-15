@@ -8,21 +8,21 @@ public final class Box2DBuilders {
 	}
 
 	public static class Body {
-		public static BodyBuilder newStaticBodyBuilder() {
+		public static BodyBuilder staticBodyBuilder() {
 			return BodyBuilder.newStaticBody();
 		}
 
-		public static BodyBuilder newDynamicBodyBuilder() {
+		public static BodyBuilder dynamicBodyBuilder() {
 			return BodyBuilder.newDynamicBody();
 		}
 
-		public static BodyBuilder newKinematicBodyBuilder() {
+		public static BodyBuilder kinematicBodyBuilder() {
 			return BodyBuilder.newKinematicBody();
 		}
 	}
 
 	public static class Shape {
-		public static PolygonShapeBuilder newPolygonBuilder() {
+		public static PolygonShapeBuilder polygonBuilder() {
 			return PolygonShapeBuilder.newPolygon();
 		}
 
@@ -38,39 +38,39 @@ public final class Box2DBuilders {
 			return PolygonShapeBuilder.buildBox(width, height, centerX, centerY, angle);
 		}
 
-		public static CircleShapeBuilder newCircleBuilder() {
+		public static CircleShapeBuilder circleBuilder() {
 			return CircleShapeBuilder.newCircle();
 		}
 
-		public static ChainShapeBuilder newChainBuilder() {
+		public static ChainShapeBuilder chainBuilder() {
 			return ChainShapeBuilder.newChain();
 		}
 
-		public static LoopedChainShapeBuilder newLoopedChainBuilder() {
+		public static LoopedChainShapeBuilder loopedChainBuilder() {
 			return LoopedChainShapeBuilder.newLoopedChain();
 		}
 	}
 
 	public static class Fixture {
-		public static FixtureBuilder newFixtureBuilder() {
+		public static FixtureBuilder fixtureBuilder() {
 			return FixtureBuilder.newFixture();
 		}
 	}
 	
 	public static class Joint {
-		public static RopeJointBuilder newRopeJointBuilder() {
+		public static RopeJointBuilder ropeJointBuilder() {
 			return RopeJointBuilder.newRopeJoint();
 		}
 		
-		public static MouseJointBuilder newMouseJointBuilder() {
+		public static MouseJointBuilder mouseJointBuilder() {
 			return MouseJointBuilder.newMouseJoint();
 		}
 		
-		public static DistanceJointBuilder newDistanceJointBuilder() {
+		public static DistanceJointBuilder distanceJointBuilder() {
 			return DistanceJointBuilder.newDistanceJoint();
 		}
 		
-		public static RevoluteJointBuilder newRevoluteJointBuilder() {
+		public static RevoluteJointBuilder revoluteJointBuilder() {
 			return RevoluteJointBuilder.newRevoluteJoint();
 		}
 	}

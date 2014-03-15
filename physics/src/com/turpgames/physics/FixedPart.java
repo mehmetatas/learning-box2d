@@ -7,10 +7,10 @@ public class FixedPart {
 	public final Body body;
 	
 	public FixedPart(GameWorld gameWorld) {
-		body = Box2DBuilders.Body.newStaticBodyBuilder()
+		body = Box2DBuilders.Body.staticBodyBuilder()
 				.setCenter(0.75f, 2.5f)
 				.build(gameWorld.getWorld(),
-					Box2DBuilders.Fixture.newFixtureBuilder()
+					Box2DBuilders.Fixture.fixtureBuilder()
 								.setShape(Box2DBuilders.Shape.buildBox(0.1f, 0.1f)));
 	}
 }
