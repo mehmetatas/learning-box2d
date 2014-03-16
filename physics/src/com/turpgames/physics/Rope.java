@@ -108,7 +108,7 @@ public class Rope {
 		destroyTailJoint();
 		destroyMainRopeJoint();
 
-		this.headBody = null;
+		this.tailBody = null;
 	}
 
 	private void buildRopeJoints() {
